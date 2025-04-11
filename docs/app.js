@@ -7,18 +7,18 @@
 //
 //
 
-if ("serviceWorker" in navigator) {
-  // declaring scope manually
-  navigator.serviceWorker.register("sw.js").then(
+if ('serviceWorker' in navigator) {
+
+  navigator.serviceWorker.register('sw.js').then(
     (registration) => {
-      console.log("Service worker registration succeeded:", registration);
+      console.log('[app.js] service worker reg OK.', registration);
     },
     (error) => {
-      console.error(`Service worker registration failed: ${error}`);
+      console.error(`[app.js] service worker reg failed: ${error}`);
     },
   );
 } else {
-  console.error("Service workers are not supported.");
+  console.error('[app.js] service worker unsupported.');
 }
 
 const shapebox = document.querySelector('#icontype');
