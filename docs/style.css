@@ -47,10 +47,16 @@ div {
   margin-bottom: auto;
 }
 
+#iconsquare {
+  position: absolute;
+  x: 0;
+  y: 0;
+  opacity: 0;
+}
+
 #preview {
-  padding: 20px;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 
 #title {
@@ -65,8 +71,8 @@ div {
 .details {
   padding: 25px;
   font-size: 15pt;
+  margin-left: 50px;
 }
-
 
 .container {
   max-width: fit-content;
@@ -76,4 +82,3 @@ div {
   display: flex;
   flex-direction: row;
 }
-
