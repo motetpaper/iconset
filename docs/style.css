@@ -1,0 +1,79 @@
+body {
+  margin-top: 25px;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+tt {
+  font-size: 12pt;
+  font-weight: 900;
+}
+
+input[type=color] {
+  width: 200px;
+  height: 200px;
+}
+
+select {
+  width: 200px;
+  height: 50px;
+  font-size: 15pt;
+}
+
+select option {
+  text-align: center;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  font-size: 18pt;
+  font-family: monospace;
+  font-weight: 900;
+}
+
+div {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#preview {
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+#title {
+  font-size: 18pt;
+}
+
+#footer {
+  font-size: 12pt;
+  font-family: monospace;
+}
+
+.details {
+  padding: 25px;
+  font-size: 15pt;
+}
+
+
+.container {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+

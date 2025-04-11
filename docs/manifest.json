@@ -1,0 +1,15 @@
+{
+  "short_name": "ICONSET",
+  "name": "ICONSET",
+  "icons": [
+    {
+      "src": "./icons/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0066ff",
+  "background_color": "#0066ff"
+}

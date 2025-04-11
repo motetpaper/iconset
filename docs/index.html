@@ -1,1 +1,50 @@
+---
+---
+<!DOCTYPE html>
+<html>
+<head>
+  {% include ga.html %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOTETPAPER/ICONSET</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script type="module" src="./jszip.min.js"></script>
+  <script type="module" src="./app.js"></script>
+  <link rel="manifest" href="./manifest.json"/>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+  <link rel="canonical" href="https://motetpaper.github.io/iconset">  
+</head>
+<body>
 
+<div class="container">
+  <div>
+  <select id="icontype" name="shape">
+    <option value="square">SQUARE ICON</option>
+    <option value="round" selected>ROUND ICON</option>
+  </select>
+  <br/>
+  <input id="iconcolor" type="color"><br/>
+  <button id="savebtn">Make ICONSET</button><br/>
+  </div>
+  <div>
+    <img title="preview icon" id="preview" src="./loading.gif" height="150" width="150">
+  </div>
+  <div class="details">
+    <div id="title"><h1>ICONSET<br/>generator web app</h1></div>
+    <ul>
+      <li>Round or square placeholder icons.</li>
+      <li>Many sizes with one click.</li>
+      <li><tt>favicon.ico</tt> included.</li>
+      <li>All in the <tt>icons/</tt> folder.</li>
+      <li>Saves in a ZIP file.</li>
+    </ul>
+
+    <br/>
+    <br/>
+<div id="footer">ICONSET v1.5 - <a href="https://motetpaper.github.io/">MOTETPAPER</a> &copy; 2025</div>
+  </div>
+</div>
+
+
+</body>
+</html>
