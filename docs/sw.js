@@ -1,5 +1,5 @@
 // sw.js (service worker)
-const cacheName = 'iconset-15';
+const cacheName = 'iconset-1-5';
 const swfiles = [
   './',
   './index.html',
