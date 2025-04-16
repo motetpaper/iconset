@@ -49,3 +49,23 @@ self.addEventListener('fetch', (evt) => {
 
 // onfetch
 });
+
+
+// pwa upgrades cache
+self.addEventListener('activate', (event) => {
+  const cacheAllowlist = [ cacheName ];
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheVersion) => {
+          if (!cacheAllowlist.includes(cacheVersion)) {
+            console.log(`[sw.js] Updating cache to ${cacheVersion} ... `);            
+            return caches.delete(cacheVersion);
+          }
+        }),
+      );
+    }),
+  );
+
+// onactivate
+});
