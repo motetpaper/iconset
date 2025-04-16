@@ -3,15 +3,15 @@ body {
 }
 
 a {
-  color: white;
+  color: black;
 }
 
 a:hover {
-  color: white;
+  color: black;
 }
 
 a:visited {
-  color: white;
+  color: black;
 }
 
 tt {
