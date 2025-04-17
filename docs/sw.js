@@ -24,7 +24,7 @@ self.addEventListener('install', (evt) => {
   evt.waitUntil(
     (async () => {
       const cache = await caches.open(cacheName);
-      console.log('[sw.js] caching all: app shell and content');
+      console.log('[sw.js] Caching all: app shell and content');
       await cache.addAll(contentToCache);
     })(),
   );
@@ -50,7 +50,7 @@ self.addEventListener('fetch', (evt) => {
   ];
 
   if(nocacheurls.some((a) => evt.request.url.includes(a))) {
-    console.log(`[sw.js] not caching ${evt.request.url} ...`);
+    console.log(`[sw.js] Not caching ${evt.request.url} ...`);
     evt.respondWith(fetch(evt.request));
   } else {
     evt.respondWith(
