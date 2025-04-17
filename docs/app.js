@@ -83,6 +83,8 @@ async function iconset() {
   let zip = new JSZip();
 
   const hex = colorbox.value;
+  const shape = shapebox.value;
+
   const tag = hex.replace(/[^A-Fa-f]/,'');
   const outfile = `motetpaper-iconset-${tag}.zip`;
 
@@ -94,19 +96,29 @@ async function iconset() {
     58, 48, 32, 16,
   ];
 
-  await favicon({ color: hex });
+  // adds favicon
+  await icon({
+    color: hex,
+    shape: shape,
+    isFavicon: true,
+  });
 
+  // adds other icons
   for(let i in dims) {
-    await icon({ size: dims[i],
-      color: hex,});
+    await icon({
+      color: hex,
+      shape: shape,
+      size: dims[i],
+      filename: `icon${dims[i]}.png`,
+    });
   }
-
 
   btn_txt('exporting...');
   zip.generateAsync({type:"blob"}).then((b) => {
     save(b);
   });
 
+  // exports the zip archive to the desktop/mobile env
   async function save(blob) {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -116,85 +128,69 @@ async function iconset() {
       btn_reset();
   }
 
+  // adds an icon to the zip archive
   async function icon(opts) {
 
+    const fn = !!opts.isFavicon ? 'favicon.ico' : opts.filename;
     const url = await iconurl(opts);
 
     await fetch(url)
     .then((r)=>r.blob())
     .then((b)=>{
       const img = zip.folder("icons");
-      img.file(`icon${opts.size}.png`, b, {base64: true});
+      img.file(fn, b, {base64: true});
     });
   }
+}
 
-  async function favicon(opts) {
 
-    const url = await faviconurl(opts);
+// returns data URL with base64 representation of icon
+async function iconurl(opts) {
 
-    await fetch(url)
-    .then((r)=>r.blob())
-    .then((b)=>{
-      const img = zip.folder("icons");
-      img.file(`favicon.ico`, b, {base64: true});
-    });
+  const mimeType = !!opts.isFavicon ? 'image/x-icon' : 'image/png';
+
+  // using the + operator cast value as type Number
+  const size = !!opts.isFavicon ? 16 : +opts.size;
+
+  // expecting #hashed hex triplets
+  const hexcolor = opts.color;
+
+  // expecting 'round' or 'square, for now'
+  const shape = opts.shape;
+
+  // canvas details
+  const [ w, h ] = [ size, size ];
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = w;
+  canvas.height = h;
+
+  // draw the icon
+  ctx.beginPath();
+
+  switch(shape) {
+    case 'square':
+      ctx.fillStyle = hexcolor;
+      ctx.fillRect(0, 0, w, h);
+      break;
+    case 'round':
+      ctx.fillStyle = hexcolor;
+      ctx.arc(w/2, h/2, w/2, 0, 2 * Math.PI);
+      ctx.fill();
+      break;
+    default:
+      // nothing here
+      break;
   }
+
+  return canvas.toDataURL(mimeType);
 }
 
 async function preview() {
   seebox.src = await iconurl({
     size: 300,
     color: colorbox.value,
+    shape: shapebox.value,
   });
-}
-
-async function iconurl(opts) {
-
-  const s = opts.size;
-  const c = opts.color;
-
-  const [ w, h ] = [ s, s ];
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  canvas.width = w;
-  canvas.height = h;
-
-  ctx.beginPath();
-
-  switch(shapebox.value) {
-    case 'square':
-      ctx.fillStyle = c;
-      ctx.fillRect(0, 0, w, h);
-      break;
-    case 'round':
-      ctx.fillStyle = c;
-      ctx.arc(w/2, h/2, w/2, 0, 2 * Math.PI);
-      ctx.fill();
-      break;
-    default:
-      // nothing
-      break;
-  }
-
-  return canvas.toDataURL();
-}
-
-async function faviconurl(opts) {
-
-  const c = opts.color;
-
-  const [ w, h ] = [ 16, 16 ];
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  canvas.width = w;
-  canvas.height = h;
-
-  ctx.beginPath();
-
-  ctx.fillStyle = c;
-  ctx.fillRect(0, 0, w, h);
-
-  return canvas.toDataURL('image/x-icon');
 }
