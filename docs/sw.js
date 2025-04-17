@@ -50,7 +50,7 @@ self.addEventListener('fetch', (evt) => {
   ];
 
   if(nocacheurls.some((a) => evt.request.url.includes(a))) {
-    console.log(`not caching ${evt.request.url} ...`);
+    console.log(`[sw.js] not caching ${evt.request.url} ...`);
     evt.respondWith(fetch(evt.request));
   } else {
     evt.respondWith(
