@@ -43,10 +43,10 @@ self.addEventListener('fetch', (evt) => {
   // Request method 'POST' is unsupported
   //
 
-  const nocacheurls = [ 
-    'https://imgsct.cookiebot.com', 
-    'https://www.google-analytics.com' 
-    'https://www.googletagmanager.com'     
+  const nocacheurls = [
+    'https://imgsct.cookiebot.com',
+    'https://www.google-analytics.com',
+    'https://www.googletagmanager.com',
   ];
 
   if(nocacheurls.some((a) => evt.request.url.includes(a))) {
