@@ -11,6 +11,10 @@ const swfiles = [
   './icons/icon512.png',
 ];
 
+// sw template area below
+//
+//
+
 const contentToCache = [];
 contentToCache.concat(swfiles);
 
